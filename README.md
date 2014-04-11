@@ -40,62 +40,7 @@ The DataList Control
 
 For this gallery, I set the RepeatColumns to 6 and just displayed the thumbnail image with a link to the full-sized image back on the SmugMug web site.
 
-<asp:DataList ID="dlPhotos" runat="server" RepeatColumns="6">
-
-<ItemTemplate>
-  <a href="<%# XPath("link").ToString() %>">
-     <asp:Image ID="img" ImageUrl='<%# XPath("guid") %>' runat="server"  /></a>
-
-</ItemTemplate>
-</asp:DataList>
-Sample ASPX Using a Gallery Dropdown
 
 The GalleryID is pulled from the URL of the photo gallery over on SmugMug. This is covered in detail in the sample lab.
 
-<asp:XmlDataSource ID="xmlDS" runat="server" XPath="rss/channel/item" />
-
-<h4>Select Gallery</h4>
-<asp:DropDownList ID="ddlGallery" runat="server" AutoPostBack="true">
-    <asp:ListItem Text="1838622: Uruguay - Colonia" Value="1838622" />
-
-    <asp:ListItem Text="2473610: Lower Hellhole Canyon Desert Hike" Value="2473610" />
-    <asp:ListItem Text="1887671: New Zealand - Whakarewarewa Thermal Village" Value="1887671" />
-
-</asp:DropDownList>
-<br /><br />
-<asp:DataList ID="dlPhotos" runat="server" RepeatColumns="6">
-
-<ItemTemplate>
-    <a href="<%# XPath("link").ToString() %>">
-        <asp:Image ID="img" ImageUrl='<%# XPath("guid") %>' runat="server" /></a>
-
-</ItemTemplate>
-</asp:DataList>
-<asp:Label ID="lblError" Visible="false" runat="server" />
-And the Code Behind (C#)
-
-protected void Page_Load(object sender, EventArgs e)
-{
-   string rssURL;
-   string galleryID;
-   galleryID = ddlGallery.SelectedValue.ToString();
-   rssURL = "http://www.smugmug.com/hack/feed.mg?Type=gallery&Data=" + galleryID + "&format=rss200";
-
-   try
-
-   {
-       xmlDS.DataFile = rssURL;
-       dlPhotos.DataSource = xmlDS;
-       dlPhotos.DataBind();
-   }
-   catch (XmlException err)
-   {
-       lblError.Text = "Oops, looks like an error occured with this gallery: " + err.Message;
-       lblError.Visible = true;
-   }
-}
-Lab Demo
-
-SmugMug Image Gallery in ASP.NET
-
-The gallery uses a simple 6 column layout. Once you have the RSS feed, you can be as creative as you like in designing the layout for your photo gallery.
+DEMO: http://digitalcolony.com/lab/smugmug/imageGallery.aspx
