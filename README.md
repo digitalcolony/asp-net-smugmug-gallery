@@ -42,5 +42,3 @@ For this gallery, I set the RepeatColumns to 6 and just displayed the thumbnail 
 
 
 The GalleryID is pulled from the URL of the photo gallery over on SmugMug. This is covered in detail in the sample lab.
-
-DEMO: http://digitalcolony.com/lab/smugmug/imageGallery.aspx
