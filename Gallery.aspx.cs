@@ -6,7 +6,6 @@ protected void Page_Load(object sender, EventArgs e)
    rssURL = "http://www.smugmug.com/hack/feed.mg?Type=gallery&Data=" + galleryID + "&format=rss200";
 
    try
-
    {
        xmlDS.DataFile = rssURL;
        dlPhotos.DataSource = xmlDS;

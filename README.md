@@ -1,25 +1,25 @@
-asp-net-smugmug-gallery
-=======================
+# Displaying a SmugMug Gallery with `ASP.NET`
 
-Displaying a SmugMug Gallery with ASP.NET
-
-Back in the day I used to host all my own image galleries on my site. It’s a tedious process and you can quickly use up your allocated disk space with today’s multi-mega pixel cameras. Fortunately we have companies like SmugMug and Flickr that will host, manage and back-up all our images.
+Back in the day I used to host all my own image galleries on my site. It’s a tedious process and you can quickly use up your allocated disk space with today’s multi-mega pixel cameras. Fortunately we have companies like SmugMug and Flickr that will host, manage, and back-up all our images.
 
 The problem with not hosting photo galleries is you send your audience away from your site over to their server. And your photo galleries develop their own audience which knows nothing about the parent site.
 
-I discovered that using the XmlDataSource and DataList ASP.NET controls you can build a photo gallery on your site while the images stay over on SmugMug using a simple RSS feed.
+Using the **XmlDataSource** and **DataList** `ASP.NET` controls you can build a photo gallery on your site while the images stay over on SmugMug using a simple RSS feed.
 
-The XmlDataSource
+## The XmlDataSource
 
-ASP.NET 2.0 introduced the asp:XmlDataSource control which we will use to connect to the SmugMug RSS feed. The DataFile parameter is the path to the RSS file for that photo gallery. In the snippet below, I hard-coded that value. In the example and lab that value is populated in the code behind. Also important is the XPath parameter. This is the address inside the XML Document that holds the information about each photo.
+`ASP.NET` 2.0 introduced the **asp:XmlDataSource** control which we will use to connect to the SmugMug RSS feed. The DataFile parameter is the path to the RSS file for that photo gallery. In the snippet below, I hard-coded that value. In the example and lab that value is populated in the code behind. Also important is the XPath parameter. This is the address inside the XML Document that holds the information about each photo.
 
+```aspx
 <asp:XmlDataSource ID="xmlDS" runat="server" XPath="rss/channel/item"
     DataFile= "http://www.smugmug.com/hack/feed.mg?Type=gallery&Data=1838622&format=rss200" />
+```
 
-The RSS Feed (XML Document)
+## The RSS Feed (XML Document)
 
 Here is a snippet of how a single photo is represented inside the XML Document. I’ve removed the portion which deals with the gallery name, as it is not used in this example. In this example the 2 values that are used when rendering the gallery inside the DataList will be link and guid.
 
+```xml
 <item>
     <title>Image Title</title>
 
@@ -36,9 +36,14 @@ Here is a snippet of how a single photo is represented inside the XML Document. 
     <enclosure url="http://criticalmas.smugmug.com/photos/92083732-Th.jpg" length="7741" type="image/jpeg"/>
 
 </item>
-The DataList Control
+```
+
+## The DataList Control
 
 For this gallery, I set the RepeatColumns to 6 and just displayed the thumbnail image with a link to the full-sized image back on the SmugMug web site.
 
-
 The GalleryID is pulled from the URL of the photo gallery over on SmugMug. This is covered in detail in the sample lab.
+
+_created: March 3, 2007_
+
+_2017 Update: The gallery examples used in this Repo no longer exist._
